@@ -63,18 +63,22 @@ public class Lab05 extends Application {
             result.setText("");
         });
         root.add(clear, 2, 1);
-        RadioButton selected = (RadioButton) radioGroup.getSelectedToggle();
-        String radioResult = selected.getText();
         
         Button order = new Button("Place Order");
         order.setOnAction(e -> {
-            result.setText("You ordered " 
+            if (quant.getValue() == null || radioGroup.getSelectedToggle() == null || bagStyles.getSelectionModel().getSelectedItem() == null) {
+                result.setText("Error. Select every option");
+            } else {
+                RadioButton selected = (RadioButton) radioGroup.getSelectedToggle();
+                String radioResult = selected.getText();
+                result.setText("You ordered " 
                     + quant.getValue() 
                     + " "
                     + radioResult
                     + " "
                     + bagStyles.getSelectionModel().getSelectedItem()
                     + " Bag");
+            }
         });
         root.add(order, 3, 1);
         
